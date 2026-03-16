@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello World | 文心快码</title>
+    <script src="https://code.bdstatic.com/npm/tailwindcss-cdn@3.4.10/tailwindcss.js"></script>
+    <link rel="stylesheet" href="https://code.bdstatic.com/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.cn/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap');
+        :root {
+            --primary: #2563eb;
+            --secondary: #4b5563;
+            --accent: #7c3aed;
+        }
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        .theme-dark {
+            --primary: #3b82f6;
+            --secondary: #9ca3af;
+            --accent: #8b5cf6;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
+    <div class="container mx-auto px-4 py-12">
+        <!-- Header -->
+        <header class="flex justify-between items-center mb-12">
+            <h1 class="text-2xl font-bold text-gray-800 dark:text-white">文心快码</h1>
+            <button id="themeToggle" class="p-2 rounded-full bg-white dark:bg-gray-700 shadow-md">
+                <i class="fas fa-moon text-gray-700 dark:text-yellow-300"></i>
+            </button>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-2xl mx-auto">
+            <div class="bg-white dark:bg-gray-700 rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl">
+                <div class="p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 rounded-full bg-blue-100 dark:bg-blue-900 flex items-center justify-center mr-4">
+                            <i class="fas fa-code text-blue-500 dark:text-blue-300 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-3xl font-bold text-gray-800 dark:text-white animate-fade-in">Hello World!</h2>
+                            <p class="text-gray-500 dark:text-gray-300">我的第一个响应式网页123</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div class="p-4 bg-blue-50 dark:bg-blue-900/30 rounded-lg border border-blue-100 dark:border-blue-800">
+                            <p class="text-blue-700 dark:text-blue-200">
+                                <i class="fas fa-info-circle mr-2"></i>
+                                这是一个使用Tailwind CSS构建的现代化Hello World界面
+                            </p>
+                        </div>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button class="flex-1 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-all duration-200 flex items-center justify-center">
+                                <i class="fas fa-rocket mr-2"></i> 开始探索
+                            </button>
+                            <button class="flex-1 px-6 py-3 bg-gray-100 hover:bg-gray-200 dark:bg-gray-600 dark:hover:bg-gray-500 text-gray-800 dark:text-white rounded-lg transition-all duration-200 flex items-center justify-center">
+                                <i class="fas fa-book mr-2"></i> 了解更多
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 dark:bg-gray-600 px-6 py-4 border-t border-gray-100 dark:border-gray-500">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-300">
+                            <i class="fas fa-clock"></i>
+                            <span id="currentTime">加载中...</span>
+                        </div>
+                        <div class="text-sm">
+                            <span class="text-gray-500 dark:text-gray-300 mr-2">由</span>
+                            <span class="font-medium text-blue-600 dark:text-blue-400">Baidu Comate</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // 主题切换功能
+        const themeToggle = document.getElementById('themeToggle');
+        const icon = themeToggle.querySelector('i');
+        
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('theme-dark');
+            
+            if (document.documentElement.classList.contains('theme-dark')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+
+        // 显示当前时间
+        function updateTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleString('zh-CN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: false
+            });
+            document.getElementById('currentTime').textContent = timeStr;
+        }
+        
+        updateTime();
+        setInterval(updateTime, 1000);
+    </script>
+</body>
+</html>
